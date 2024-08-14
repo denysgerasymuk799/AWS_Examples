@@ -1,1 +1,1 @@
-ssh -i ./ml_project_2022.pem hadoop@ec2-52-59-223-35.eu-central-1.compute.amazonaws.com
+ssh -i ./ml_project_2022.pem hadoop@ec2-3-124-204-85.eu-central-1.compute.amazonaws.com

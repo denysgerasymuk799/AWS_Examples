@@ -8,7 +8,7 @@ from pyspark.sql.window import Window as w
 
 
 spark = SparkSession.builder\
-    .appName("Big_Data")\
+    .appName("EMR_Demo")\
     .getOrCreate()
 
 
@@ -490,7 +490,7 @@ if __name__ == '__main__':
     # Explore data
     video_categories_df = spark.read.format("json") \
         .option("multiline", "true") \
-        .load("s3://big-data-labs-2022/data/GB_category_id.json")
+        .load("s3://emr-demo-2024/data/GB_category_id.json")
     print('video_categories_df schema: ')
     video_categories_df.printSchema()
 
@@ -509,7 +509,7 @@ if __name__ == '__main__':
         .option("multiline", True) \
         .option("sep", ",") \
         .option("header", True) \
-        .load("s3://big-data-labs-2022/data/GBvideos.csv")
+        .load("s3://emr-demo-2024/data/GBvideos.csv")
     print('Show videos_df:')
     videos_df.show()
 
@@ -520,7 +520,7 @@ if __name__ == '__main__':
     top_trending_videos_df.printSchema()
     print('top_trending_videos_df show: ')
     top_trending_videos_df.show()
-    top_trending_videos_df.write.json('s3://big-data-labs-2022/results/top_trending_videos.json')
+    top_trending_videos_df.write.json('s3://emr-demo-2024/results/top_trending_videos.json')
 
     # ===================== QUERY 2 =====================
     most_popular_categories_df = get_most_popular_categories(videos_df, video_categories_df)
@@ -529,7 +529,7 @@ if __name__ == '__main__':
     most_popular_categories_df.printSchema()
     print('most_popular_categories_df show: ')
     most_popular_categories_df.show()
-    most_popular_categories_df.write.json('s3://big-data-labs-2022/results/most_popular_categories.json')
+    most_popular_categories_df.write.json('s3://emr-demo-2024/results/most_popular_categories.json')
 
     # ===================== QUERY 3 =====================
     most_used_tags_df = get_most_used_tags(videos_df)
@@ -538,7 +538,7 @@ if __name__ == '__main__':
     most_used_tags_df.printSchema()
     print('most_used_tags_df show: ')
     most_used_tags_df.show()
-    most_used_tags_df.write.json('s3://big-data-labs-2022/results/most_used_tags.json')
+    most_used_tags_df.write.json('s3://emr-demo-2024/results/most_used_tags.json')
 
     # ===================== QUERY 4 =====================
     top_channels_by_number_of_views_df = get_top_channels_by_number_of_views(videos_df)
@@ -547,7 +547,7 @@ if __name__ == '__main__':
     top_channels_by_number_of_views_df.printSchema()
     print('top_channels_by_number_of_views_df show: ')
     top_channels_by_number_of_views_df.show()
-    top_channels_by_number_of_views_df.write.json('s3://big-data-labs-2022/results/top_channels_by_number_of_views.json')
+    top_channels_by_number_of_views_df.write.json('s3://emr-demo-2024/results/top_channels_by_number_of_views.json')
 
     # ===================== QUERY 5 =====================
     top_channels_by_trending_days_df = get_top_channels_by_trending_days(videos_df)
@@ -556,7 +556,7 @@ if __name__ == '__main__':
     top_channels_by_trending_days_df.printSchema()
     print('top_channels_by_trending_days_df show: ')
     top_channels_by_trending_days_df.show()
-    top_channels_by_trending_days_df.write.json('s3://big-data-labs-2022/results/top_channels_by_trending_days.json')
+    top_channels_by_trending_days_df.write.json('s3://emr-demo-2024/results/top_channels_by_trending_days.json')
 
     # ===================== QUERY 6 =====================
     top_category_videos_by_ratio_likes_dislikes_df = get_top_category_videos_by_ratio_likes_dislikes(videos_df,
@@ -566,4 +566,4 @@ if __name__ == '__main__':
     top_category_videos_by_ratio_likes_dislikes_df.printSchema()
     print('top_category_videos_by_ratio_likes_dislikes_df show: ')
     top_category_videos_by_ratio_likes_dislikes_df.show()
-    top_category_videos_by_ratio_likes_dislikes_df.write.json('s3://big-data-labs-2022/results/top_category_videos_by_ratio_likes_dislikes.json')
+    top_category_videos_by_ratio_likes_dislikes_df.write.json('s3://emr-demo-2024/results/top_category_videos_by_ratio_likes_dislikes.json')
